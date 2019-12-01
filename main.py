@@ -26,7 +26,8 @@ bot = telegram.Bot(os.environ.get('BOT_KEY'))
 
 chat_id = 0
 
-client = pymongo.MongoClient(f"mongodb+srv://{USER}:{PASSWORD}@cluster0-dioya.mongodb.net/test?retryWrites=true&w=majority")
+mongo_string = 'mongodb+srv://' + USER + ':' + PASSWORD + '@cluster0-dioya.mongodb.net/test?retryWrites=true&w=majority'
+client = pymongo.MongoClient(mongo_string)
 db = client.sidapp
 users = db.users
 
