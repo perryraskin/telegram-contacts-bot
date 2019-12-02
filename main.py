@@ -7,7 +7,8 @@ import re
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import telegram
 
-import config
+if os.getenv('ENV') != 'production':
+  import config
 from helpers import *
 
 now = datetime.datetime.now()
