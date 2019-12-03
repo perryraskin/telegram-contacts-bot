@@ -128,6 +128,7 @@ def help(update, context):
 
 
 def send_usage(update):
+  logger.info(f'[bot] received usage request for chat id {update.message.chat.id}')
   update.message.reply_markdown(get_usage_message())
 
 def send_signup(update):
@@ -251,10 +252,12 @@ def profile_handler(update, context):
 
 def people_handler(update, context):
   people = users.find({ 'type' : 2, 'chat_id' : update.message.chat.id })
+  logger.info(f'[bot] received people request for chat id {update.message.chat.id}')
   ppl_list = '*People List:* \n\n'
   for i, p in enumerate(people, start=1):
     ppl_list = ppl_list + '*' + str(i) + '.* ' + p['name']['first'] + ' ' + p['name']['last'] + '\n'
 
+  logger.info(f'[bot] replying to people request for chat id {update.message.chat.id}')
   update.message.reply_markdown(ppl_list)
   # bot.send_message(chat_id=update.message.chat.id,
   #                text=ppl_list,
