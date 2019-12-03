@@ -267,6 +267,7 @@ def people_handler(update, context):
     first = name['first']
     last = name['last']
     ppl_list = ppl_list + '*' + str(i) + '.* ' + p['name']['first'] + ' ' + p['name']['last'] + '\n'
+    print(ppl_list)
 
   logger.info(f'[bot] replying to people request for chat id {update.message.chat.id}')
   update.message.reply_markdown(ppl_list)
