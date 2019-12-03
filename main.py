@@ -252,10 +252,8 @@ def profile_handler(update, context):
 
 def people_handler(update, context):
   logger.info(f'[bot] received people request for chat id {update.message.chat.id}')
-  people = users.find({ 'type' : 2, 'chat_id' : update.message.chat.id })
-  logger.info(f'[bot] people is {people}')
   ppl_list = '*People List:* \n\n'
-  for i, p in enumerate(people):
+  for i, p in enumerate(users.find({ 'type' : 2, 'chat_id' : update.message.chat.id })):
     if p.get('name') is None:
       logger.error('[bot] people_handler: missing name')
       return update.message.reply_markdown("server error")
