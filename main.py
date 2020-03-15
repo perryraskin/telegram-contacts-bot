@@ -233,7 +233,7 @@ def response_handler(update, context):
 
     if users.find_one({ 'type' : 2, 'chat_id' : update.message.chat.id, 'email' : f[3] }) == None:
       users.insert_one(user)
-      update.message.reply_markdown(f'Successfully added {f[1]} {f[2]}!')
+      update.message.reply_markdown(f'Successfully added {f[0]} {f[1]}!')
       people_handler(update, context)
     else:
       update.message.reply_markdown(f'You have already added person with email {f[3]}.')
