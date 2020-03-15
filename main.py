@@ -20,13 +20,14 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 logger = logging.getLogger(__name__)
 
 # Get environment variables
-MONGODB_URI = os.environ.get('MONGODB_URI')
+USER = os.getenv('DB_USER')
+PASSWORD = os.environ.get('DB_PASSWORD')
 
 bot = telegram.Bot(os.environ.get('BOT_KEY'))
 
 chat_id = 0
 
-client = pymongo.MongoClient(MONGODB_URI)
+client = pymongo.MongoClient(f"mongodb+srv://{USER}:{PASSWORD}@cluster0-dioya.mongodb.net/test?retryWrites=true&w=majority")
 db = client.sidapp
 users = db.users
 
